@@ -1,29 +1,24 @@
 <template>
-
-<!-- Header -->
-  <AppHeader/>
-  <!-- Introduction -->
-  <AppIntro/>
-  <!-- Main Content -->
-  <AppMain/>
+  <!-- Header -->
+  <AppHeader />
+  <router-view></router-view>
   <!-- Player -->
-  <AppPlayer/>
+  <AppPlayer />
   <!-- Auth Modal -->
-  <AppAuth/>
-
+  <AppAuth />
 </template>
 
 <script>
-import AppHeader from './components/AppHeader.vue'
-import AppIntro from './components/AppIntro.vue'
-import AppMain from './components/AppMain.vue'
-import AppPlayer from './components/AppPlayer.vue'
-import AppAuth from './components/AppAuth.vue'
-export default{
-  name:'App',
-  components:{AppHeader,AppIntro,AppMain,AppPlayer,AppAuth},
-}
+import AppHeader from "./components/AppHeader.vue";
+import AppPlayer from "./components/AppPlayer.vue";
+import AppAuth from "./components/AppAuth.vue";
+export default {
+  name: "App",
+  components: { AppHeader, AppPlayer, AppAuth },
+  created() {
+    this.$store.dispatch("init_login");
+  },
+};
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>
