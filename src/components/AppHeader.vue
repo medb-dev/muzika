@@ -3,11 +3,13 @@
   <header id="header" class="bg-gray-700">
     <nav class="container mx-auto flex justify-start items-center py-5 px-4">
       <!-- App Name -->
-      <a class="text-white font-bold uppercase text-2xl mr-4" href="#">muzika</a>
+      <router-link class="text-white font-bold uppercase text-2xl mr-4" to="/">
+        muzika
+      </router-link>
 
       <div class="flex flex-grow justify-end items-center">
         <!-- Primary Navigation -->
-        <ul class="flex flex-row mt-1">
+        <ul class="flex flex-row mt-1 justify-center">
           <!-- Navigation Links -->
           <template v-if="!userLoggedIn">
             <li>
@@ -21,15 +23,17 @@
               <a class="px-2 text-white" href="#" @click.prevent="logout">Logout</a>
             </li>
             <li>
-              <a class="px-2 text-white" href="#">Manage</a>
+              <router-link class="px-2 text-white" to="/manage">Manage</router-link>
             </li>
             <li>
-              <img
-                class="w-8 rounded-full"
-                src="../assets/profile-picture.png"
-                alt="profile picture"
-              />
-              <!-- src="userPhotoUrl" -->
+              <div
+                class="w-8 h-8 rounded-full bg-cover bg-center"
+                :style="{
+                  backgroundImage: `url(${require('@/assets/profile-picture.png')})`,
+                  backgroundPosition: 'center center',
+                  backgroundSize: '80%',
+                }"
+              ></div>
             </li>
           </template>
         </ul>
