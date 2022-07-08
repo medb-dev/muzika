@@ -22,14 +22,19 @@ export default createStore({
       tos: "tos",
     },
     userLoggedIn: false,
-    userDisplayName: "",
-    userPhotoUrl: "",
   },
   mutations: {
     toggleAuthModal: (state) => (state.authModalShow = !state.authModalShow),
     toggleAuth: (state) => (state.userLoggedIn = !state.userLoggedIn),
   },
-  getters: {},
+  getters: {
+    getUserDisplayName(){
+      return getAuth().currentUser.displayName
+    },
+    getUserPhotoUrl(){
+      return getAuth().currentUser.photoURL;
+    },
+  },
   actions: {
     async register({ commit }, payload) {
       const userCredential = await createUserWithEmailAndPassword(
@@ -37,7 +42,6 @@ export default createStore({
         payload.email,
         payload.password
       );
-      // console.log(userCredential.user.uid);
       await setDoc(doc(db, "users", userCredential.user.uid), {
         name: payload.name,
         email: payload.email,
@@ -47,18 +51,11 @@ export default createStore({
       await updateProfile(getAuth().currentUser, {
         displayName: payload.name,
         photoURL: `https://avatars.dicebear.com/api/initials/:${payload.name.charAt(0)}.svg`,
-      }).then(() => {
-        this.state.userDisplayName = payload.name;
-        this.state.userPhotoUrl = `https://avatars.dicebear.com/api/initials/:${payload.name.charAt(
-          0
-        )}.svg`;
-      });
-
+      })
       commit("toggleAuth");
     },
     async login({ commit }, payload) {
-      // await signInWithEmailAndPassword(getAuth(), "med@test.com", "NOOBmome-98");
-      await signInWithEmailAndPassword(getAuth(), payload.email, payload.password);
+      await signInWithEmailAndPassword(getAuth(), payload.email, payload.password)
       commit("toggleAuth");
     },
     async logout({ commit }) {

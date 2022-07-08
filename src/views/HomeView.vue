@@ -2,8 +2,8 @@
   <!-- Introduction -->
   <section class="mb-8 py-20 text-white text-center relative">
     <div
-      class="absolute inset-0 w-full h-full bg-contain introduction-bg"
-      style="background-image: url(assets/img/header.png)"
+      class="absolute inset-0 w-full h-full bg-contain introduction-bg "
+      style="background-image: url(assets/img/header.png);background-size:100% 105%;"
     ></div>
     <div class="container mx-auto">
       <div class="text-white main-header-content">
