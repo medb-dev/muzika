@@ -3,19 +3,24 @@ import HomeView from '../views/HomeView.vue';
 import Manage from "../views/ManageView.vue";
 const routes = [
   {
-    path: "/",
     name: "home",
+    path: "/",
     component: HomeView,
   },
   {
-    path: "/manage",
     name: "manage",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    /* webpackChunkName: "manage" */
+    path: "/manage",
+    alias:'/manage-music',
     component: Manage,
   },
+  {
+    path:'/admin',
+    redirect:'/manage'
+  },
+  {
+    path:'/:catchAll(.*)*',
+    redirect:'/'
+  }
 ];
 
 const router = createRouter({

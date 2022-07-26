@@ -136,3 +136,21 @@
     </div>
   </section>
 </template>
+
+<script>
+import { mapState } from 'vuex'
+  export default{
+    name:'ManageView',
+    computed:{
+      ...mapState(["userLoggedIn"])
+    },
+    beforeRouteEnter(to,from,next){
+      if(this.$store.state.userLoggedIn) 
+        next()
+      else{ 
+        console.log('false')
+        next({name:'home'})
+      }
+    }
+  }
+</script>
